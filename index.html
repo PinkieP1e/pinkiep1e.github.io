@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-use-egg-js-react-to-develop-a-project" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/08/use-egg-js-react-to-develop-a-project/" class="article-date">
+  <time datetime="2019-03-08T10:39:00.000Z" itemprop="datePublished">2019-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/08/use-egg-js-react-to-develop-a-project/">use egg.js&amp;react to develop a project</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b class="big">1.安装egg.js, egg-mysql</b><br>to begin, let’s quickly initialized the project by using a scaffold, which will generate some of the major pieces of the generation<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm i egg-init -g</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> egg-init egg-example --<span class="built_in">type</span>=simple</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> egg-example</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm i</span></span><br></pre></td></tr></table></figure>Then get up and run by using the following commands.<br>    <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run dev</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> open localhost:7001</span></span><br></pre></td></tr></table></figure>进行上述操作后, egg的hello world就已经跑起来了</p>
+<p><b>2.连接数据库</b><br>    a.Install egg-mysql<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm i --save egg-mysql</span></span><br></pre></td></tr></table></figure>
+    b.Enable Plugin:
+    
+    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config/plugin.js</span></span><br><span class="line">exports.mysql = &#123;</span><br><span class="line">    enable: <span class="literal">true</span>,</span><br><span class="line">    package: <span class="string">'egg-mysql'</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>Configure database information in config/config.${env}.js<br>    c.Single Data Source Configuration to accesss single MySQL instance as shown below:<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// config/config.$&#123;env&#125;.js</span></span><br><span class="line">exports.mysql = &#123;</span><br><span class="line">    <span class="comment">// database configuration</span></span><br><span class="line">    client: &#123;</span><br><span class="line">        host: <span class="string">'mysql.com'</span>,</span><br><span class="line">        port: <span class="string">'3306'</span>,</span><br><span class="line">        user: <span class="string">'test_user'</span>,</span><br><span class="line">        password: <span class="string">'test_password'</span>,</span><br><span class="line">        database: <span class="string">'test'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// load into app, default true</span></span><br><span class="line">    app: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// load into agent, default false</span></span><br><span class="line">    agent: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>d.Use:<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> app.mysql.query(sql, values); <span class="comment">// single instance can be accessed through app.mysql</span></span><br></pre></td></tr></table></figure><br><b>3.返回数据</b><br>    Service Layer<br>        Connecting to MySQL is a data processing layer in the Web layer. So it is strongly recommended that keeping the code in the Service layer.<br>        An example of connecting to MySQL as follows.<br>        Details of Service layer, refer to service<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> list(page = <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> sql = <span class="string">`select * from forum`</span>;</span><br><span class="line">    <span class="keyword">const</span> values = &#123;&#125;; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.app.mysql);</span><br><span class="line">    <span class="comment">// single instance can be accessed through app.mysql</span></span><br><span class="line">    <span class="keyword">const</span> forumList = <span class="keyword">await</span> <span class="keyword">this</span>.app.mysql.query(sql, values); </span><br><span class="line">    <span class="keyword">return</span> &#123;forumList&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>    After that, obtaining data from service layer using controller<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> list() &#123;</span><br><span class="line">        <span class="keyword">const</span> ctx = <span class="keyword">this</span>.ctx;</span><br><span class="line">        <span class="keyword">const</span> page = ctx.query.page || <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">const</span> forumList = <span class="keyword">await</span> ctx.service.forum.list(page);</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">        type: ctx.get(<span class="string">'content-type'</span>),</span><br><span class="line">        body: &#123;</span><br><span class="line">            status: <span class="number">1</span>,</span><br><span class="line">            msg:forumList</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//await ctx.render('news/list.tpl', &#123; list: newsList &#125;);</span></span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure><br>    json:<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"status"</span>:<span class="number">1</span>,<span class="attr">"msg"</span>:&#123;<span class="attr">"forumList"</span>:[&#123;<span class="attr">"fid"</span>:<span class="number">1</span>,<span class="attr">"fname"</span>:<span class="string">"茶馆"</span>,<span class="attr">"type"</span>:<span class="string">"3"</span>,<span class="attr">"isdelete"</span>:<span class="number">0</span>&#125;]&#125;&#125;</span><br></pre></td></tr></table></figure><br>    <blockquote><p><span style="color:red"><br>    mysql8.0版本报错：Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client解决办法（修改加密规则为普通模式，默认是严格加密模式）：</span><br>    1.打开命令行小黑屏，进入MySQL的bin目录，然后输入mysql -u root -p，输入密码<br>    2.然后依次输入ALTER USER ‘root‘@’localhost’ IDENTIFIED BY ‘password’ PASSWORD EXPIRE NEVER; (修改加密规则 （必写）)ALTER USER ‘root‘@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘password’; (更新用户密码 )FLUSH PRIVILEGES; #刷新权限（不输入也可以）<br>    3.输入刚刚修改的密码，再次测试连接，搞定</p>
+<footer><strong>初心不改_0055,简书</strong><cite><a href="https://www.jianshu.com/p/c8eb6d2471f8" target="_blank" rel="noopener">www.jianshu.com/p/c8eb6d2471f8</a></cite></footer></blockquote><br><!-- <b>4.前端发送ajax请求</b> --></p>
+<h3 id="4-前端发送ajax请求"><a href="#4-前端发送ajax请求" class="headerlink" title="4.前端发送ajax请求"></a>4.前端发送ajax请求</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*models send request to server, return forum list data*/</span></span><br><span class="line">*list(&#123; payload &#125;, &#123; call, put &#125;) &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">yield</span> call(<span class="function"><span class="params">()</span>=&gt;</span>Window.get(<span class="string">"list"</span>), payload);</span><br><span class="line">    <span class="comment">//const response = Window.get("list");</span></span><br><span class="line">    <span class="keyword">yield</span> put(&#123;</span><br><span class="line">        type: <span class="string">'queryList'</span>,</span><br><span class="line">        payload: <span class="built_in">Array</span>.isArray(response.data.msg.forumList) ? response.data.msg.forumList : [],</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">/*send get request*/</span></span><br><span class="line"><span class="keyword">get</span>(url,param)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        service(&#123;</span><br><span class="line">            method:<span class="string">'get'</span>,</span><br><span class="line">            url:loc+url,</span><br><span class="line">            params:param,</span><br><span class="line">            cancelToken:<span class="keyword">new</span> CancelToken(<span class="function"><span class="params">c</span>=&gt;</span>&#123;</span><br><span class="line">                cancel=c</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;  <span class="comment">//axios返回的是一个promise对象</span></span><br><span class="line">            resolve(res)  <span class="comment">//resolve在promise执行器内部 </span></span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(err,<span class="string">'异常'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://github.com/ant-design/ant-design-pro" target="_blank" rel="noopener">antd-pro</a></p>
+<!-- <b>5.nginx反向代理</b> -->
+<h3 id="5-webpack代理服务器"><a href="#5-webpack代理服务器" class="headerlink" title="5.webpack代理服务器"></a>5.webpack代理服务器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"proxy"</span>: &#123;</span><br><span class="line">  <span class="string">"/api/"</span>: &#123;</span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"http://localhost:7001/"</span>,</span><br><span class="line">    <span class="string">"changeOrigin"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"pathRewrite"</span>: &#123; <span class="string">"^/api/"</span> : <span class="string">""</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://umijs.org/config/#proxy" target="_blank" rel="noopener">umi.js</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/08/use-egg-js-react-to-develop-a-project/" data-id="cjt2sj8xr0000goy6ah3e0xel" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/08/hello-world/" class="article-date">
+  <time datetime="2019-03-08T09:36:55.235Z" itemprop="datePublished">2019-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/08/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/08/hello-world/" data-id="cjt2sj8xx0001goy6l02e0z4g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/08/use-egg-js-react-to-develop-a-project/">use egg.js&amp;react to develop a project</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/08/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
